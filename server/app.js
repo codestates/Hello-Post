@@ -6,7 +6,7 @@ const http = require('http');
 
 const { sequelize } = require('./models');
 
-// const postsRouter = require('./router/posts');
+const postsRouter = require('./router/posts');
 const usersRouter = require('./router/users');
 const app = express();
 
@@ -20,7 +20,6 @@ sequelize
   })
   .catch(err => {
     console.error('🚨 Fail: DB connection!', err);
-
   });
 
 app.use(logger(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
@@ -37,7 +36,7 @@ app.use(
 app.get('/', (req, res) => {
   res.status(200).send('ok');
 });
-// app.use('/posts', postsRouter);
+app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 
 const server = http.createServer(app);

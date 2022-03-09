@@ -113,6 +113,6 @@ module.exports = {
   },
   // 회원탈퇴
   destroy: (req, res) => {
-    res.serd();
+    res.send();
   },
 };
